@@ -58,5 +58,5 @@ RUN a2enmod rewrite
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # gosu
-RUN curl -o /usr/local/bin/gosu -SL 'https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu' && \
+RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu" && \
     chmod +x,u+s /usr/local/bin/gosu
