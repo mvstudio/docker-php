@@ -21,6 +21,7 @@ RUN apt-get install \
       ssmtp \
       imagemagick \
       git \
+      build-essential \
     -y --no-install-recommends
 
 # APT Cleanup
