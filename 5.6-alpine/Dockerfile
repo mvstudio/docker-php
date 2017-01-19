@@ -15,11 +15,18 @@ RUN apk add --update \
       php5 php5-apache2 php5-redis@testing php5-memcache php5-zip php5-mysqli \
       php5-pdo_mysql php5-mysql php5-ftp php5-imagick php5-gd php5-intl \
       php5-zlib php5-json php5-iconv php5-xml php5-ctype php5-dom php5-curl \
-      php5-apcu php5-phar php5-openssl
+      php5-apcu php5-phar php5-openssl \
+      bash python2 make gcc g++ nodejs
 
 # fix missing dire for Apache2 PID file
 RUN mkdir -p /run/apache2/
 
+# move php.ini to the same location as in the php-apache image
+RUN mkdir -p /usr/local/etc/php && \
+    mv /etc/php5/php.ini /usr/local/etc/php/php.ini && \
+    ln -s /usr/local/etc/php/php.ini /etc/php5/php.ini
+
+# clean /var/www directory
 RUN rm -Rf /var/www/*
 
 COPY ./httpd.conf /etc/apache2/httpd.conf
