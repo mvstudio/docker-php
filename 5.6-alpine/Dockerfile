@@ -11,12 +11,11 @@ RUN echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/re
     echo '@community http://nl.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
 
 RUN apk --no-cache add \
-      curl apache2 ssmtp git imagemagick diffutils \
+      curl apache2 ssmtp git imagemagick diffutils openssl bash nodejs \
       php5 php5-apache2 php5-redis@testing php5-memcache php5-zip php5-mysqli \
       php5-pdo_mysql php5-mysql php5-ftp php5-imagick php5-gd php5-intl \
       php5-zlib php5-json php5-iconv php5-xml php5-ctype php5-dom php5-curl \
-      php5-apcu php5-phar php5-openssl \
-      bash nodejs
+      php5-apcu php5-phar php5-openssl
 
 # fix missing dire for Apache2 PID file
 RUN mkdir -p /run/apache2/
@@ -27,7 +26,8 @@ RUN mkdir -p /usr/local/etc/php && \
     ln -s /usr/local/etc/php/php.ini /etc/php5/php.ini
 
 # clean /var/www directory
-RUN rm -Rf /var/www/*
+RUN rm -Rf /var/www/* && \
+    mkdir -p /var/www/html
 
 COPY ./httpd.conf /etc/apache2/httpd.conf
 COPY ./php5-module.conf /etc/apache2/conf.d/php5-module.conf
