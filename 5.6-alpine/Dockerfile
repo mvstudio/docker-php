@@ -15,7 +15,7 @@ RUN apk --no-cache add \
       php5 php5-apache2 php5-redis@testing php5-memcache php5-zip php5-mysqli \
       php5-pdo_mysql php5-mysql php5-ftp php5-imagick php5-gd php5-intl \
       php5-zlib php5-json php5-iconv php5-xml php5-ctype php5-dom php5-curl \
-      php5-apcu php5-phar php5-openssl
+      php5-apcu php5-phar php5-openssl php5-opcache
 
 # fix missing dire for Apache2 PID file
 RUN mkdir -p /run/apache2/
