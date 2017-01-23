@@ -19,3 +19,8 @@ services:
     image: mvstudio/php:5.6-alpine
     build:
       context: ./5.6-alpine
+
+  php_70_alpine:
+    image: mvstudio/php:7.0-alpine
+    build:
+      context: ./7.0-alpine
