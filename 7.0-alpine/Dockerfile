@@ -12,7 +12,7 @@ RUN echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/re
 
 RUN apk --no-cache add \
     curl apache2 ssmtp git imagemagick diffutils openssl bash nodejs \
-    php7 php7-common php7-apache2 php7-redis php7-zip php7-mysqli \
+    php7 php7-common php7-apache2 php7-redis@community php7-zip php7-mysqli \
     php7-pdo_mysql php7-ftp php7-gd php7-intl \
     php7-zlib php7-json php7-iconv php7-xml php7-ctype php7-dom php7-curl \
     php7-apcu php7-phar php7-openssl php7-opcache
