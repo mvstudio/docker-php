@@ -34,7 +34,6 @@ RUN curl -o /usr/local/bin/install-php-extensions -sSL ${INSTALL_PHP_EXTENSIONS_
     intl \
     mysqli \
     opcache \
-    pdo \
     pdo_mysql \
     redis \
     soap \
