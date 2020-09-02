@@ -1,17 +1,16 @@
-FROM php:7.4-alpine3.12
+FROM alpine:3.11
 
 ENV GOSU_URL=https://github.com/tianon/gosu/releases/download/1.12/gosu-amd64 \
     TINI_URL=https://github.com/krallin/tini/releases/download/v0.19.0/tini-static-amd64 \
     DOCKERIZE_URL=https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-alpine-linux-amd64-v0.6.1.tar.gz \
     INSTALL_PHP_EXTENSIONS_URL=https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/master/install-php-extensions
 
-# Install install-php-extensions
-RUN curl -o /usr/local/bin/install-php-extensions -sSL ${INSTALL_PHP_EXTENSIONS_URL} && \
-    chmod uga+x /usr/local/bin/install-php-extensions && \
-    # Setup edge@community alpine repository
-    echo '@community http://nl.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && \
+ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
+
+RUN apk --update add ca-certificates && \
+    echo "https://dl.bintray.com/php-alpine/v3.11/php-7.4" >> /etc/apk/repositories && \
     # Install apache2 and other packages
-    apk --no-cache add \
+    apk --update add \
     apache2 \
     bash \
     curl \
@@ -22,22 +21,38 @@ RUN curl -o /usr/local/bin/install-php-extensions -sSL ${INSTALL_PHP_EXTENSIONS_
     make \
     nodejs \
     npm \
-    php7-common@community=7.4.9-r0 \
-    php7-apache2@community=7.4.9-r0 \
+    php7 \
+    php7-apache2 \
+    php7-apcu \
+    php7-common \
+    php7-ctype \
+    php7-curl \
+    php7-dom \
+    php7-ftp \
+    php7-gd \
+    php7-iconv \
+    php7-intl \
+    php7-json \
+    php7-mbstring \
+    php7-mysqli \
+    php7-opcache \
+    php7-openssl \
+    php7-pdo \
+    php7-pdo_mysql \
+    php7-phar \
+    php7-posix \
+    php7-redis \
+    php7-session \
+    php7-soap \
+    php7-sodium \
+    php7-xml \
+    php7-xmlreader \
+    php7-xmlrpc \
+    php7-zip \
+    php7-zlib \
     python2 \
     shadow \
     ssmtp && \
-    # Install php extensions
-    install-php-extensions \
-    apcu \
-    gd \
-    intl \
-    mysqli \
-    opcache \
-    pdo_mysql \
-    redis \
-    soap \
-    zip && \
     # Compile & install ModSecurity 2
     apk --no-cache add automake autoconf libtool pcre-dev pcre geoip-dev geoip \
     yajl-dev yajl lmdb-dev lmdb libxml2-dev libxml2 lua5.3-dev lua5.3 linux-headers apache2-dev apr apr-dev apr-util apr-util-dev && \
@@ -59,8 +74,6 @@ RUN curl -o /usr/local/bin/install-php-extensions -sSL ${INSTALL_PHP_EXTENSIONS_
     mv /etc/modsecurity/coreruleset-3.3.0/crs-setup.conf.example /etc/modsecurity/coreruleset-3.3.0/crs-setup.conf && \
     # Setup apache2 run dir
     mkdir -p /run/apache2/ && \
-    # Setup php configuration
-    mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini && \
     # Clean /var/www
     rm -Rf /var/www/* && \
     mkdir -p /var/www/html && \
@@ -74,7 +87,8 @@ RUN curl -o /usr/local/bin/install-php-extensions -sSL ${INSTALL_PHP_EXTENSIONS_
     curl -sSL ${DOCKERIZE_URL} | tar -C /usr/local/bin -xz && \
     chmod +x /usr/local/bin/dockerize && \
     # Install composer
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    ln -s /usr/bin/php7 /usr/bin/php && \
+    curl -sS https://getcomposer.org/installer | php7 -- --install-dir=/usr/local/bin --filename=composer && \
     # Final cleanup
     rm -rf /var/cache/apk/*
 
