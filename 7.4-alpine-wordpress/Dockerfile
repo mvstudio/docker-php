@@ -14,6 +14,7 @@ RUN apk --update add ca-certificates && \
     apache2 \
     bash \
     curl \
+    openssl \
     diffutils \
     g++ \
     gcc \
