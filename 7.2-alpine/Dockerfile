@@ -7,15 +7,15 @@ ENV TINI_URL=https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/
 ENV DOCKERIZE_VERSION=0.3.0
 ENV DOCKERIZE_URL=https://github.com/jwilder/dockerize/releases/download/v${DOCKERIZE_VERSION}/dockerize-alpine-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz
 
-RUN echo '@testing http://nl.alpinelinux.org/alpine/3.8/testing' >> /etc/apk/repositories && \
-    echo '@community http://nl.alpinelinux.org/alpine/3.8/community' >> /etc/apk/repositories
+RUN echo '@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
+    echo '@community http://nl.alpinelinux.org/alpine/v3.8/community' >> /etc/apk/repositories
 
 RUN apk --no-cache add \
     curl apache2 ssmtp git imagemagick diffutils openssl bash nodejs npm \
     php7 php7-common php7-apache2 php7-redis php7-zip php7-mysqli \
     php7-pdo_mysql php7-ftp php7-gd php7-intl \
     php7-zlib php7-json php7-iconv php7-xml php7-ctype php7-dom php7-curl \
-    php7-apcu php7-phar php7-openssl php7-opcache php7-tokenizer
+    php7-apcu php7-phar php7-openssl php7-opcache php7-tokenizer php7-simplexml
 
 # fix missing dire for Apache2 PID file
 RUN mkdir -p /run/apache2/
