@@ -34,3 +34,8 @@ services:
     image: mvstudio/php:7.2-alpine
     build:
       context: ./7.2-alpine
+
+  php_80_alpine_wordpress:
+    image: mvstudio/php:8.0-alpine-wordpress
+    build:
+      context: ./8.0-alpine-wordpress
