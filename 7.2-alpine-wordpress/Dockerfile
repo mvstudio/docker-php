@@ -16,7 +16,7 @@ RUN apk --no-cache add \
     php7-pdo_mysql php7-ftp php7-gd php7-intl \
     php7-zlib php7-json php7-iconv php7-xml php7-ctype php7-dom php7-curl \
     php7-apcu php7-phar php7-openssl php7-opcache php7-tokenizer \
-    python3 make gcc g++ php-soap shadow freetype-dev libjpeg-turbo-dev libpng-dev \
+    python2 python3 make gcc g++ php-soap shadow freetype-dev libjpeg-turbo-dev libpng-dev \
     php7-mbstring php7-zip php7-simplexml
 
 
