@@ -35,6 +35,11 @@ services:
     build:
       context: ./7.2-alpine
 
+  php_72_alpine_wordpress:
+    image: mvstudio/php:7.2-alpine-wordpress
+    build:
+      context: ./7.2-alpine-wordpress
+
   php_80_alpine_wordpress:
     image: mvstudio/php:8.0-alpine-wordpress
     build:
