@@ -1,4 +1,4 @@
-FROM alpine:3.11
+FROM alpine:3.14
 
 ENV GOSU_VERSION=1.10
 ENV GOSU_URL=https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64
@@ -7,8 +7,8 @@ ENV TINI_URL=https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/
 ENV DOCKERIZE_VERSION=0.3.0
 ENV DOCKERIZE_URL=https://github.com/jwilder/dockerize/releases/download/v${DOCKERIZE_VERSION}/dockerize-alpine-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz
 
-RUN echo '@testing http://nl.alpinelinux.org/alpine/3.11/testing' >> /etc/apk/repositories && \
-    echo '@community http://nl.alpinelinux.org/alpine/3.11/community' >> /etc/apk/repositories
+RUN echo '@testing http://nl.alpinelinux.org/alpine/3.14/testing' >> /etc/apk/repositories && \
+    echo '@community http://nl.alpinelinux.org/alpine/3.14/community' >> /etc/apk/repositories
 
 RUN apk --no-cache add \
     curl apache2 ssmtp git imagemagick diffutils openssl bash nodejs npm \
@@ -16,9 +16,18 @@ RUN apk --no-cache add \
     php7-pdo_mysql php7-ftp php7-gd php7-intl \
     php7-zlib php7-json php7-iconv php7-xml php7-ctype php7-dom php7-curl \
     php7-apcu php7-phar php7-openssl php7-opcache php7-tokenizer \
-    python2 make gcc g++ php-soap shadow freetype-dev libjpeg-turbo-dev libpng-dev \
+    make gcc g++ php-soap shadow freetype-dev libjpeg-turbo-dev libpng-dev \
     php7-mbstring php7-zip php7-simplexml
 
+RUN echo "**** install Python ****" && \
+    apk add --no-cache python3 && \
+    if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi && \
+    \
+    echo "**** install pip ****" && \
+    python3 -m ensurepip && \
+    rm -r /usr/lib/python*/ensurepip && \
+    pip3 install --no-cache --upgrade pip setuptools wheel && \
+    if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi
 
 # fix missing dire for Apache2 PID file
 RUN mkdir -p /run/apache2/
