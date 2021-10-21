@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.14
 
 ENV GOSU_VERSION=1.10
 ENV GOSU_URL=https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64

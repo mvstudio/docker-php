@@ -1,14 +1,11 @@
-FROM alpine:3.11
+FROM alpine:3.14
 
 ENV GOSU_URL=https://github.com/tianon/gosu/releases/download/1.12/gosu-amd64 \
     TINI_URL=https://github.com/krallin/tini/releases/download/v0.19.0/tini-static-amd64 \
     DOCKERIZE_URL=https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-alpine-linux-amd64-v0.6.1.tar.gz \
     INSTALL_PHP_EXTENSIONS_URL=https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/master/install-php-extensions
 
-ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
-
 RUN apk --update add ca-certificates && \
-    echo "https://dl.bintray.com/php-alpine/v3.11/php-7.4" >> /etc/apk/repositories && \
     # Install apache2 and other packages
     apk --update add \
     apache2 \
@@ -88,7 +85,6 @@ RUN apk --update add ca-certificates && \
     curl -sSL ${DOCKERIZE_URL} | tar -C /usr/local/bin -xz && \
     chmod +x /usr/local/bin/dockerize && \
     # Install composer
-    ln -s /usr/bin/php7 /usr/bin/php && \
     curl -sS https://getcomposer.org/installer | php7 -- --install-dir=/usr/local/bin --filename=composer && \
     # Final cleanup
     rm -rf /var/cache/apk/*

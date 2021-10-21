@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.14
 
 ENV GOSU_VERSION=1.10
 ENV GOSU_URL=https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64
@@ -7,8 +7,8 @@ ENV TINI_URL=https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/
 ENV DOCKERIZE_VERSION=0.3.0
 ENV DOCKERIZE_URL=https://github.com/jwilder/dockerize/releases/download/v${DOCKERIZE_VERSION}/dockerize-alpine-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz
 
-RUN echo '@testing http://nl.alpinelinux.org/alpine/3.8/testing' >> /etc/apk/repositories && \
-    echo '@community http://nl.alpinelinux.org/alpine/3.8/community' >> /etc/apk/repositories
+RUN echo '@testing http://nl.alpinelinux.org/alpine/3.14/testing' >> /etc/apk/repositories && \
+    echo '@community http://nl.alpinelinux.org/alpine/3.14/community' >> /etc/apk/repositories
 
 RUN apk --no-cache add \
     curl apache2 ssmtp git imagemagick diffutils openssl bash nodejs npm \
