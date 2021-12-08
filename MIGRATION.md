@@ -109,4 +109,4 @@ ENTRYPOINT [ "/usr/local/bin/tini", "--", "/bin/sh", "/opt/bootstrap.sh" ]
 
 The new mvstudio/php:7-alpine and mvstudio/php:8-alpine images come with prebaked `bootstrap.sh`
 
-The `bootstrap.sh` script can be safely deleted from you repository.
+The `scripts/bootstrap.sh` script can be safely deleted from you repository.
