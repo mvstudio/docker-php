@@ -1,0 +1,111 @@
+# PHP 7 Base image
+
+# Installed packges
+
+- apache2
+- apache2-dev
+- apr
+- apr-dev
+- apr-util
+- apr-util-dev
+- autoconf
+- automake
+- bash
+- curl
+- diffutils
+- fontconfig
+- freetype
+- freetype-dev
+- fuse
+- g++
+- gcc
+- geoip
+- geoip-dev
+- git
+- imagemagick
+- libjpeg-turbo-dev
+- libpng-dev
+- libssl1.1
+- libstdc++
+- libtool
+- libx11
+- libxext
+- libxml2
+- libxml2-dev
+- libxrender
+- linux-headers
+- lmdb
+- lmdb-dev
+- lua5.3
+- lua5.3-dev
+- make
+- nodejs
+- npm
+- openssl
+- pcre
+- pcre-dev
+- perl
+- php7
+- php7-apache2
+- php7-common
+- php7-ctype
+- php7-curl
+- php7-dom
+- php7-fileinfo
+- php7-ftp
+- php7-gd
+- php7-iconv
+- php7-intl
+- php7-json
+- php7-mbstring
+- php7-mysqli
+- php7-opcache
+- php7-openssl
+- php7-pdo
+- php7-pdo_mysql
+- php7-pecl-apcu
+- php7-phar
+- php7-posix
+- php7-redis
+- php7-session
+- php7-simplexml
+- php7-soap
+- php7-sodium
+- php7-tokenizer
+- php7-xml
+- php7-xmlreader
+- php7-xmlrpc
+- php7-xmlwriter
+- php7-zip
+- php7-zlib
+- python2
+- shadow
+- ssmtp
+- sudo
+- ttf-dejavu
+- ttf-droid
+- ttf-freefont
+- ttf-liberation
+- yajl
+- yajl-dev
+
+## Addittionals
+
+- gosu 1.14
+- tiny 0.19.0
+- dockerize 0.15.4 (powerman)
+- Composer
+- ModSecurity 2.9.5
+- Core Ruleset 3.3.2
+- WP CLI
+
+## Tags
+
+- 7-alpine
+- 7.0-alpine (for back compatibility)
+- 7.2-alpine (for back compatibility)
+- 7.2-alpine-wordpress (for back compatibility)
+- 7.3-alpine (for back compatibility)
+- 7.3-alpine-wordpress (for back compatibility)
+- 7.4-alpine (for back compatibility)
+- 7.4-alpine-wordpress (for back compatibility)
