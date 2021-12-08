@@ -42,7 +42,9 @@ Thus the following directive can be safely removed from your Dockerfile.
 COPY ./configs /opt/configs
 ```
 
-Also the configs directory can be deleted from your repository unless it contains more file than `php.inc.tmpl` in which case only that file can be safely deleted.
+Also the configs directory can be deleted from your repository unless it contains more file than `configs/php.inc.tmpl` in which case only that file can be safely deleted.
+
+The file `scripts/php.inc` becomes uncessary and **must** be deleted and the line `source "${SCRIPTS_PATH}/php.inc"` if present in your `scripts/entrypoint.sh` **must** be removed.
 
 ## Remove unecessary env vars
 
@@ -107,4 +109,4 @@ ENTRYPOINT [ "/usr/local/bin/tini", "--", "/bin/sh", "/opt/bootstrap.sh" ]
 
 The new mvstudio/php:7-alpine and mvstudio/php:8-alpine images come with prebaked `bootstrap.sh`
 
-The `bootstrap.sh` script can be safely deleted from you repository as well as the `php.inc` file.
+The `bootstrap.sh` script can be safely deleted from you repository.
