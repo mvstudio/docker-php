@@ -27,9 +27,9 @@ FROM mvstudio/php:8.0-alpine
 To
 
 ```Dockerfile
-FROM mvstudio/php:7-alpine
+FROM ghrc.io/mvstudio/php:7-alpine
 # or
-FROM mvstudio/php:8-alpine
+FROM ghcr.io/mvstudio/php:8-alpine
 ```
 
 ## Remove unecessary configs
