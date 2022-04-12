@@ -85,7 +85,7 @@ RUN wp core download --version=${WP_VERSION} --locale=fr_FR --allow-root
 
 ## Remove unecessary directives
 
-The new mvstudio/php:7-alpine and mvstudio/php:8-alpine images come with prebaked `WORKDIR`, `ENTRYPOINT`, `COMMAND`, `EXPOSE` directives.
+The new mvstudio/php:7-alpine and mvstudio/php:8-alpine images come with prebaked `WORKDIR`, `ENTRYPOINT`, `COMMAND`, `EXPOSE` directives and .
 
 Thus those directives can be safely removed unless explicitly set with a different value.
 
@@ -103,6 +103,14 @@ EXPOSE 80
 
 ```Dockerfile
 ENTRYPOINT [ "/usr/local/bin/tini", "--", "/bin/sh", "/opt/bootstrap.sh" ]
+```
+
+With the new images, apache has his proper Listen directive set.
+
+Thus the following directive (or similar) can be safely removed.
+
+```Dockerfile
+RUN sed -i'' 's/Listen 80/Listen 0.0.0.0:80/' /etc/apache2/httpd.conf
 ```
 
 ## Remove unecessary scripts
