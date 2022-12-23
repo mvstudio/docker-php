@@ -53,6 +53,13 @@ COPY ./bin/gosu-${TARGETARCH} /usr/local/bin/gosu
 COPY ./bin/tini-static-${TARGETARCH} /usr/local/bin/tini
 COPY ./bin/dockerize-linux-${TARGETARCH} /usr/local/bin/dockerize
 
+ENV HTTPD_PORT_HTTP="80" \
+    HTTPD_PORT_HTTPS="443" \
+    HTTPD_CORES="4" \
+    HTTPD_THREADS_PER_CORE="64" \
+    HTTPD_DUMPIO_INPUT="Off" \
+    HTTPD_DUMPIO_OUTPUT="Off"
+
 ENV PHP_XDEBUG_CLI_COLOR="0" \
     PHP_XDEBUG_CLIENT_DISCOVERY_HEADER="" \
     PHP_XDEBUG_CLIENT_HOST="host.docker.internal" \
