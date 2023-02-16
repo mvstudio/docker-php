@@ -1,0 +1,104 @@
+# PHP 82 Base image
+
+# Installed packages
+
+- apache2
+- apache2-dev
+- apr
+- apr-dev
+- apr-util
+- apr-util-dev
+- autoconf
+- automake
+- bash
+- curl
+- diffutils
+- fontconfig
+- freetype
+- freetype-dev
+- fuse
+- g++
+- gcc
+- geoip
+- geoip-dev
+- git
+- imagemagick
+- libjpeg-turbo-dev
+- libpng-dev
+- libssl1.1
+- libstdc++
+- libtool
+- libx11
+- libxext
+- libxml2
+- libxml2-dev
+- libxrender
+- linux-headers
+- lmdb
+- lmdb-dev
+- lua5.3
+- lua5.3-dev
+- make
+- nodejs
+- npm
+- openssl
+- pcre
+- pcre-dev
+- perl
+- php82
+- php82-apache2
+- php82-common
+- php82-ctype
+- php82-curl
+- php82-dev
+- php82-dom
+- php82-fileinfo
+- php82-ftp
+- php82-gd
+- php82-iconv
+- php82-intl
+- php82-json
+- php82-mbstring
+- php82-mysqli
+- php82-opcache
+- php82-openssl
+- php82-pdo
+- php82-pdo_mysql
+- php82-pecl-apcu
+- php82-pecl-redis
+- php82-pecl-xdebug
+- php82-phar
+- php82-posix
+- php82-session
+- php82-simplexml
+- php82-soap
+- php82-sodium
+- php82-tokenizer
+- php82-xml
+- php82-xmlreader
+- php82-xmlwriter
+- php82-zip
+- php82-zlib
+- shadow
+- ssmtp
+- sudo
+- ttf-dejavu
+- ttf-droid
+- ttf-freefont
+- ttf-liberation
+- yajl
+- yajl-dev
+
+## Addittionals
+
+- gosu 1.14
+- tiny 0.19.0
+- dockerize 0.15.4 (powerman)
+- Composer
+- ModSecurity 2.9.5
+- Core Ruleset 3.3.2
+- WP CLI
+
+## Tags
+
+- 82-alpine
