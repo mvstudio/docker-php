@@ -1,4 +1,4 @@
-# PHP 8 Base image
+# PHP 81 Base image
 
 # Installed packages
 
@@ -45,38 +45,40 @@
 - pcre
 - pcre-dev
 - perl
-- php8
-- php8-apache2
-- php8-common
-- php8-ctype
-- php8-curl
-- php8-dom
-- php8-fileinfo
-- php8-ftp
-- php8-gd
-- php8-iconv
-- php8-intl
-- php8-json
-- php8-mbstring
-- php8-mysqli
-- php8-opcache
-- php8-openssl
-- php8-pdo
-- php8-pdo_mysql
-- php8-pecl-apcu
-- php8-phar
-- php8-posix
-- php8-redis
-- php8-session
-- php8-simplexml
-- php8-soap
-- php8-sodium
-- php8-tokenizer
-- php8-xml
-- php8-xmlreader
-- php8-zip
-- php8-zlib
-- python2
+- php81
+- php81-apache2
+- php81-common
+- php81-ctype
+- php81-curl
+- php81-dev
+- php81-dom
+- php81-fileinfo
+- php81-ftp
+- php81-gd
+- php81-iconv
+- php81-intl
+- php81-json
+- php81-mbstring
+- php81-mysqli
+- php81-opcache
+- php81-openssl
+- php81-pdo
+- php81-pdo_mysql
+- php81-pecl-apcu
+- php81-pecl-redis
+- php81-pecl-xdebug
+- php81-phar
+- php81-posix
+- php81-session
+- php81-simplexml
+- php81-soap
+- php81-sodium
+- php81-tokenizer
+- php81-xml
+- php81-xmlreader
+- php81-xmlwriter
+- php81-zip
+- php81-zlib
 - shadow
 - ssmtp
 - sudo
@@ -99,9 +101,4 @@
 
 ## Tags
 
-- 8-alpine
-- 8.0-alpine-wordpress (for back compatibility)
-
-## Differences with PHP 7 base image
-
-- Missing xmlrpc (see: https://php.watch/versions/8.0/xmlrpc)
+- 81-alpine

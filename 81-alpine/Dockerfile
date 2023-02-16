@@ -1,4 +1,4 @@
-FROM --platform=${TARGETPLATFORM} alpine:3.16
+FROM --platform=${TARGETPLATFORM} alpine:edge
 
 ARG TARGETPLATFORM
 ARG TARGETARCH
@@ -16,27 +16,32 @@ ENV OPCACHE_REVALIDATE_FREQ=3600
 ENV SESSION_SAVE_HANDLER=files
 ENV SESSION_SAVE_PATH=/tmp
 
-RUN echo '@testing http://nl.alpinelinux.org/alpine/v3.15/testing' >> /etc/apk/repositories && \
-  echo '@community http://nl.alpinelinux.org/alpine/v3.15/community' >> /etc/apk/repositories
+RUN echo '@community http://nl.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && \
+  echo '@316main http://nl.alpinelinux.org/alpine/v3.16/main' >> /etc/apk/repositories
 
 RUN apk --no-cache add \
   apache2 apache2-dev apr apr-dev apr-util apr-util-dev autoconf automake bash \
   curl diffutils fontconfig freetype freetype-dev fuse g++ gcc geoip geoip-dev \
-  git imagemagick libjpeg-turbo-dev libpng-dev libssl1.1 libstdc++ libtool \
+  git imagemagick@community libjpeg-turbo-dev libpng-dev libssl1.1@community libstdc++ libtool \
   libx11 libxext libxml2 libxml2-dev libxrender linux-headers lmdb lmdb-dev \
-  lua5.3 lua5.3-dev make nodejs npm openssl pcre pcre-dev perl \
-  php81 php81-apache2 php81-common php81-ctype php81-curl php81-dom php81-fileinfo php81-ftp php81-gd php81-iconv php81-intl php81-json php81-mbstring php81-mysqli \
-  php81-opcache php81-openssl php81-pdo php81-pdo_mysql php81-pecl-apcu php81-phar \
-  php81-posix php81-redis php81-session php81-simplexml php81-soap php81-sodium \
-  php81-tokenizer php81-xml php81-xmlreader php81-xmlwriter php81-zip php81-zlib \
-  shadow ssmtp sudo ttf-dejavu ttf-droid ttf-freefont ttf-liberation \
-  yajl yajl-dev
+  lua5.3 lua5.3-dev make nodejs npm@community openssl pcre pcre-dev perl \
+  php81@community php81-apache2@community php81-common@community php81-ctype@community \
+  php81-curl@community php81-dev@community php81-dom@community php81-fileinfo@community \
+  php81-ftp@community php81-gd@community php81-iconv@community php81-intl@community \
+  php81-json@community php81-mbstring@community php81-mysqli@community php81-opcache@community \
+  php81-openssl@community php81-pdo@community php81-pdo_mysql@community php81-pecl-apcu@community \
+  php81-pecl-redis@community php81-pecl-xdebug@community php81-phar@community \
+  php81-posix@community php81-session@community php81-simplexml@community php81-soap@community \
+  php81-sodium@community php81-tokenizer@community php81-xml@community php81-xmlreader@community \
+  php81-xmlwriter@community php81-zip@community php81-zlib@community \
+  shadow@community ssmtp sudo@community ttf-dejavu@316main ttf-droid ttf-freefont@316main \
+  ttf-liberation yajl yajl-dev
 
 # fix missing dir for Apache2 PID file
 RUN mkdir -p /run/apache2/
 
 # create symlink for php executable php -> php81
-RUN ln -s /usr/bin/php81 /usr/bin/php
+# RUN ln -s /usr/bin/php81 /usr/bin/php
 
 # move php.ini to the same location as in the php-apache image (back compat)
 RUN mkdir -p /usr/local/etc/php && \
@@ -54,6 +59,13 @@ COPY ./php.ini /etc/php81/conf.d/mvstudio.ini
 COPY ./bin/gosu-${TARGETARCH} /usr/local/bin/gosu
 COPY ./bin/tini-static-${TARGETARCH} /usr/local/bin/tini
 COPY ./bin/dockerize-linux-${TARGETARCH} /usr/local/bin/dockerize
+
+ENV HTTPD_PORT_HTTP="80" \
+    HTTPD_PORT_HTTPS="443" \
+    HTTPD_CORES="4" \
+    HTTPD_THREADS_PER_CORE="64" \
+    HTTPD_DUMPIO_INPUT="Off" \
+    HTTPD_DUMPIO_OUTPUT="Off"
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -83,5 +95,5 @@ RUN curl ${WP_CLI_URL} -o /usr/local/bin/wp && \
 WORKDIR ${APP_DIR}
 EXPOSE 80
 
-ENTRYPOINT [ "/usr/local/bin/tini", "--", "/bootstrap.sh" ]
+ENTRYPOINT [ "/bootstrap.sh" ]
 CMD ["httpd", "-DFOREGROUND"]
