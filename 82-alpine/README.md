@@ -79,6 +79,7 @@
 - php82-xmlwriter
 - php82-zip
 - php82-zlib
+- php82-pecl-imagick
 - shadow
 - ssmtp
 - sudo
