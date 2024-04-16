@@ -1,0 +1,105 @@
+# PHP 83 Base image
+
+# Installed packages
+
+- apache2
+- apache2-dev
+- apr
+- apr-dev
+- apr-util
+- apr-util-dev
+- autoconf
+- automake
+- bash
+- curl
+- diffutils
+- fontconfig
+- freetype
+- freetype-dev
+- fuse
+- g++
+- gcc
+- geoip
+- geoip-dev
+- git
+- imagemagick
+- libjpeg-turbo-dev
+- libpng-dev
+- libssl1.1
+- libstdc++
+- libtool
+- libx11
+- libxext
+- libxml2
+- libxml2-dev
+- libxrender
+- linux-headers
+- lmdb
+- lmdb-dev
+- lua5.3
+- lua5.3-dev
+- make
+- nodejs
+- npm
+- openssl
+- pcre
+- pcre-dev
+- perl
+- php83
+- php83-apache2
+- php83-common
+- php83-ctype
+- php83-curl
+- php83-dev
+- php83-dom
+- php83-fileinfo
+- php83-ftp
+- php83-gd
+- php83-iconv
+- php83-intl
+- php83-json
+- php83-mbstring
+- php83-mysqli
+- php83-opcache
+- php83-openssl
+- php83-pdo
+- php83-pdo_mysql
+- php83-pecl-apcu
+- php83-pecl-redis
+- php83-pecl-xdebug
+- php83-phar
+- php83-posix
+- php83-session
+- php83-simplexml
+- php83-soap
+- php83-sodium
+- php83-tokenizer
+- php83-xml
+- php83-xmlreader
+- php83-xmlwriter
+- php83-zip
+- php83-zlib
+- php83-pecl-imagick
+- shadow
+- ssmtp
+- sudo
+- ttf-dejavu
+- ttf-droid
+- ttf-freefont
+- ttf-liberation
+- yajl
+- yajl-dev
+
+## Addittionals
+
+- gosu 1.14
+- tiny 0.19.0
+- dockerize 0.15.4 (powerman)
+- Composer
+- ModSecurity 2.9.5
+- Core Ruleset 3.3.2
+- WP CLI
+
+## Tags
+
+- 83-alpine

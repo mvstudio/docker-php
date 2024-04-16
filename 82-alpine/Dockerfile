@@ -1,4 +1,4 @@
-FROM --platform=${TARGETPLATFORM} alpine:edge
+FROM --platform=${TARGETPLATFORM} alpine:3.19
 
 ARG TARGETPLATFORM
 ARG TARGETARCH
@@ -16,32 +16,28 @@ ENV OPCACHE_REVALIDATE_FREQ=3600
 ENV SESSION_SAVE_HANDLER=files
 ENV SESSION_SAVE_PATH=/tmp
 
-RUN echo '@community http://nl.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && \
-  echo '@316main http://nl.alpinelinux.org/alpine/v3.16/main' >> /etc/apk/repositories
+RUN echo '@316main http://nl.alpinelinux.org/alpine/v3.16/main' >> /etc/apk/repositories
 
 RUN apk --no-cache add \
   apache2 apache2-dev apr apr-dev apr-util apr-util-dev autoconf automake bash \
   curl diffutils fontconfig freetype freetype-dev fuse g++ gcc geoip geoip-dev \
-  git imagemagick@community libjpeg-turbo-dev libpng-dev libssl1.1@community libstdc++ libtool \
+  git imagemagick libjpeg-turbo-dev libpng-dev libssl3 libstdc++ libtool \
   libx11 libxext libxml2 libxml2-dev libxrender linux-headers lmdb lmdb-dev \
-  lua5.3 lua5.3-dev make nodejs npm@community openssl pcre pcre-dev perl \
-  php82@community php82-apache2@community php82-common@community php82-ctype@community \
-  php82-curl@community php82-dev@community php82-dom@community php82-fileinfo@community \
-  php82-ftp@community php82-gd@community php82-iconv@community php82-intl@community \
-  php82-json@community php82-mbstring@community php82-mysqli@community php82-opcache@community \
-  php82-openssl@community php82-pdo@community php82-pdo_mysql@community php82-pecl-apcu@community \
-  php82-pecl-redis@community php82-pecl-xdebug@community php82-phar@community \
-  php82-posix@community php82-session@community php82-simplexml@community php82-soap@community \
-  php82-sodium@community php82-tokenizer@community php82-xml@community php82-xmlreader@community \
-  php82-xmlwriter@community php82-zip@community php82-zlib@community \
-  shadow@community ssmtp sudo@community ttf-dejavu@316main ttf-droid ttf-freefont@316main \
+  lua5.3 lua5.3-dev make nodejs npm openssl pcre pcre-dev perl \
+  php82 php82-apache2 php82-common php82-ctype \
+  php82-curl php82-dev php82-dom php82-fileinfo \
+  php82-ftp php82-gd php82-iconv php82-intl \
+  php82-json php82-mbstring php82-mysqli php82-opcache \
+  php82-openssl php82-pdo php82-pdo_mysql php82-pecl-apcu \
+  php82-pecl-redis php82-pecl-xdebug php82-phar \
+  php82-posix php82-session php82-simplexml php82-soap \
+  php82-sodium php82-tokenizer php82-xml php82-xmlreader \
+  php82-xmlwriter php82-zip php82-zlib php82-pecl-imagick \
+  shadow ssmtp sudo ttf-dejavu@316main ttf-droid ttf-freefont@316main \
   ttf-liberation yajl yajl-dev
 
 # fix missing dir for Apache2 PID file
 RUN mkdir -p /run/apache2/
-
-# create symlink for php executable php -> php82
-RUN ln -s /usr/bin/php82 /usr/bin/php
 
 # move php.ini to the same location as in the php-apache image (back compat)
 RUN mkdir -p /usr/local/etc/php && \
