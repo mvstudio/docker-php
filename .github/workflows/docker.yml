@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php_image: [7, 8, 81, 82, 83, 84]
+        php_image: [83, 84]
     name: Build - php:${{ matrix.php_image }}-alpine
     steps:
       - name: Chect out the repo
@@ -59,7 +59,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php_image: [7, 8, 81, 82, 83, 84]
+        php_image: [83, 84]
     name: Push - php:${{ matrix.php_image }}-alpine
     steps:
       - name: Chect out the repo
