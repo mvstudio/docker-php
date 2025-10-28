@@ -1,0 +1,105 @@
+# PHP 84 Base image
+
+# Installed packages
+
+- apache2
+- apache2-dev
+- apr
+- apr-dev
+- apr-util
+- apr-util-dev
+- autoconf
+- automake
+- bash
+- curl
+- diffutils
+- fontconfig
+- freetype
+- freetype-dev
+- fuse
+- g++
+- gcc
+- geoip
+- geoip-dev
+- git
+- imagemagick
+- libjpeg-turbo-dev
+- libpng-dev
+- libssl1.1
+- libstdc++
+- libtool
+- libx11
+- libxext
+- libxml2
+- libxml2-dev
+- libxrender
+- linux-headers
+- lmdb
+- lmdb-dev
+- lua5.3
+- lua5.3-dev
+- make
+- nodejs
+- npm
+- openssl
+- pcre
+- pcre-dev
+- perl
+- php84
+- php84-apache2
+- php84-common
+- php84-ctype
+- php84-curl
+- php84-dev
+- php84-dom
+- php84-fileinfo
+- php84-ftp
+- php84-gd
+- php84-iconv
+- php84-intl
+- php84-json
+- php84-mbstring
+- php84-mysqli
+- php84-opcache
+- php84-openssl
+- php84-pdo
+- php84-pdo_mysql
+- php84-pecl-apcu
+- php84-pecl-redis
+- php84-pecl-xdebug
+- php84-phar
+- php84-posix
+- php84-session
+- php84-simplexml
+- php84-soap
+- php84-sodium
+- php84-tokenizer
+- php84-xml
+- php84-xmlreader
+- php84-xmlwriter
+- php84-zip
+- php84-zlib
+- php84-pecl-imagick
+- shadow
+- ssmtp
+- sudo
+- ttf-dejavu
+- ttf-droid
+- ttf-freefont
+- ttf-liberation
+- yajl
+- yajl-dev
+
+## Addittionals
+
+- gosu 1.14
+- tiny 0.19.0
+- dockerize 0.15.4 (powerman)
+- Composer
+- ModSecurity 2.9.5
+- Core Ruleset 3.3.2
+- WP CLI
+
+## Tags
+
+- 84-alpine
