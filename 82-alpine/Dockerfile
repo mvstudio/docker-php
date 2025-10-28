@@ -1,4 +1,4 @@
-FROM --platform=${TARGETPLATFORM} alpine:3.19
+FROM --platform=${TARGETPLATFORM} alpine:3.21 AS builder
 
 ARG TARGETPLATFORM
 ARG TARGETARCH
@@ -39,9 +39,12 @@ RUN apk --no-cache add \
 # fix missing dir for Apache2 PID file
 RUN mkdir -p /run/apache2/
 
+# create symlink for php executable php -> php84
+RUN ln -s /usr/bin/php84 /usr/bin/php
+
 # move php.ini to the same location as in the php-apache image (back compat)
 RUN mkdir -p /usr/local/etc/php && \
-  cp /etc/php82/php.ini /usr/local/etc/php/php.ini
+  cp /etc/php84/php.ini /usr/local/etc/php/php.ini
   # ln -s /usr/local/etc/php/php.ini /etc/php82/conf.d/20_php.ini
 
 # clean /var/www directory
