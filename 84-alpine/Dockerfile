@@ -54,7 +54,7 @@ RUN rm -Rf /var/www/* && \
 COPY ./bootstrap.sh /bootstrap.sh
 COPY ./entrypoint.sh /entrypoint.sh
 COPY ./httpd.conf /etc/apache2/httpd.conf
-COPY ./php.ini /etc/php84/conf.d/fromnoware.ini
+COPY ./php.ini /etc/php84/conf.d/mvstudio.ini
 COPY ./bin/gosu-${TARGETARCH} /usr/local/bin/gosu
 COPY ./bin/tini-static-${TARGETARCH} /usr/local/bin/tini
 COPY ./bin/dockerize-linux-${TARGETARCH} /usr/local/bin/dockerize
