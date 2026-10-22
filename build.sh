@@ -30,3 +30,7 @@ docker build \
 docker build \
   -t ghcr.io/mvstudio/php:84-alpine \
   ./84-alpine
+
+docker build \
+  -t ghcr.io/mvstudio/php:85-alpine \
+  ./85-alpine

@@ -40,11 +40,14 @@ RUN apk --no-cache add \
 RUN mkdir -p /run/apache2/
 
 # create symlink for php executable php -> php85
-RUN ln -s /usr/bin/php85 /usr/bin/php
+RUN ln -sf /usr/bin/php85 /usr/bin/php && \
+  php -r 'exit(PHP_VERSION === "8.5.12" ? 0 : 1);' || (php -v; echo "expected PHP 8.5.12"; exit 1)
 
 # move php.ini to the same location as in the php-apache image (back compat)
-RUN mkdir -p /usr/local/etc/php && \
-  cp /etc/php85/php.ini /usr/local/etc/php/php.ini
+RUN test -f /etc/php85/php.ini && \
+  mkdir -p /usr/local/etc/php && \
+  cp /etc/php85/php.ini /usr/local/etc/php/php.ini && \
+  php --ini | grep -q 'Loaded Configuration File:.*/etc/php85/php.ini'
   # ln -s /usr/local/etc/php/php.ini /etc/php85/conf.d/20_php.ini
 
 # clean /var/www directory
@@ -115,7 +118,8 @@ ENV PHP_XDEBUG_CLI_COLOR="0" \
     PHP_XDEBUG_VAR_DISPLAY_MAX_DATA="512" \
     PHP_XDEBUG_VAR_DISPLAY_MAX_DEPTH="3"
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN php --ini | grep -q /etc/php85/conf.d/mvstudio.ini && \
+  curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Building & Install Mod Security 2.9.12
 RUN curl -sSL https://github.com/SpiderLabs/ModSecurity/releases/download/v2.9.12/modsecurity-v2.9.12.tar.gz | tar -C /tmp/ -xz && \
